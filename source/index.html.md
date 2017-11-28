@@ -3,237 +3,288 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
   - javascript
+  - python
+  - ruby
+  - php
+  - go
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+This API documentation is to give you an overview for connecting with the Autumn http API. The Autumn platform is expecting to receive a json string so we will look at that also.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+_(Here are just a few quick tips to get you started)_
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# You will need
 
-# Authentication
+ * Set up your **Input** in Autumn
 
-> To authorize, use this code:
+ * Select **Data Source** "Send to Autumn API" in the Input setup
 
-```ruby
-require 'kittn'
+ * Make a note of your *Organisation ID* and *API KEY* for the header
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+ * and the *device id* to go in your json string
 
-```python
-import kittn
+# Header
 
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+The header data that needs to be sent includes both an Oganisation ID and Organisation API Key.
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+{
+  "Content-Type": "application/vnd.api+json",
+  "Accept": "application/vnd.api+json",
+  "ORGANIZATION-ID": "{{ORG ID}}",
+  "ORGANIZATION-API-KEY": "{{API KEY}}"
+}
+```
+
+# JSON
+
+The data we post to Autumn is a JSON string this is consistant no matter what langauage you are using.
+
+```json
+{
+  "data": {
+    "type": "SensorData",
+    "id": "null",
+    "attributes": {
+      "value": "{{DATA VALUE}}"
+    },
+    "relationships": {
+      "sensor": {
+        "data": {
+          "type": "Sensor",
+          "id": "{{DEVICE ID}}"
+        }
+      }
+    }
   }
-]
+}
 ```
 
-This endpoint retrieves all kittens.
+  * Base information
+  * Keep formating in this order
 
-### HTTP Request
+This should get data into the Autumn platform. You are welcome to utilise whichever language you're happy with.
 
-`GET http://example.com/api/kittens`
+### Extra data that can be sent
 
-### Query Parameters
+* Latitude and Longitude
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+# Endpoint
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+This endpoint is to post data.
 
-## Get a Specific Kitten
+### HTTP Post
 
-```ruby
-require 'kittn'
+`POST http://cloud.autumnapp.com`
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+`URI /api/external/v1/sensors/{sensor_pk}/sensordata/`
 
-```python
-import kittn
+### Parameters
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+Parameter | Required | Location | Type | Definition
+--------- | ------- | ----------- | ----- | ----------
+sensor_pk | true | Path (URL) | String |
+data | true | Request Body | Object | Sensor Data
+
+### Responses
+
+Parameter | http code | Content
+--------- | ----------- | --------
+created | 201 | Empty
+
+### Definitions
+
+Parameter | Required | Location | Type
+--------- | ------- | ----------- | -----
+timestamp | true | Request Body | String
+longitude | false | Request Body | String
+latitude | false | Request Body | String
+value | true | Request Body | String
+sensor | true | Request Body | String
+
+## Post data
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl --request POST \
+  --url https://cloud.autumnapp.com/api/external/v1/api/external/v1/sensors/foo/sensordata/ \
+  --header 'accept: application/vnd.api+json' \
+  --header 'content-type: application/vnd.api+json' \
+  --header 'organization-id: YOUR ORG ID HERE' \
+  --header 'organization-api-key: YOUR API KEY HERE' \
+  --data '{"x_axis_value":"foo","timestamp":"foo","longitude":"foo","related_file":"foo","value":"foo","raw_data":"foo","latitude":"foo","is_public":true,"sensor":"foo"}'
 ```
 
 ```javascript
-const kittn = require('kittn');
+var http = require("https");
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+var options = {
+  "method": "POST",
+  "hostname": "cloud.autumnapp.com",
+  "port": null,
+  "path": "/api/external/v1/api/external/v1/sensors/foo/sensordata/",
+  "headers": {
+    "accept": "application/vnd.api+json",
+    "organization-id": "YOUR ORG ID HERE",
+    "organization-api-key": "YOUR API KEY HERE",
+    "content-type": "application/vnd.api+json"
+  }
+};
+
+var req = http.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function () {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.write(JSON.stringify({ x_axis_value: 'foo',
+  timestamp: 'foo',
+  longitude: 'foo',
+  related_file: 'foo',
+  value: 'foo',
+  raw_data: 'foo',
+  latitude: 'foo',
+  is_public: true,
+  sensor: 'foo' }));
+req.end();
+```
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"net/http"
+	"io/ioutil"
+)
+
+func main() {
+
+	url := "https://cloud.autumnapp.com/api/external/v1/api/external/v1/sensors/foo/sensordata/"
+
+	payload := strings.NewReader("{\"x_axis_value\":\"foo\",\"timestamp\":\"foo\",\"longitude\":\"foo\",\"related_file\":\"foo\",\"value\":\"foo\",\"raw_data\":\"foo\",\"latitude\":\"foo\",\"is_public\":true,\"sensor\":\"foo\"}")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("accept", "application/vnd.api+json")
+	req.Header.Add("organization-id", "YOUR ORG ID HERE")
+	req.Header.Add("organization-api-key", "YOUR API KEY HERE")
+	req.Header.Add("content-type", "application/vnd.api+json")
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+```
+
+```python
+import http.client
+
+conn = http.client.HTTPSConnection("cloud.autumnapp.com")
+
+payload = "{\"x_axis_value\":\"foo\",\"timestamp\":\"foo\",\"longitude\":\"foo\",\"related_file\":\"foo\",\"value\":\"foo\",\"raw_data\":\"foo\",\"latitude\":\"foo\",\"is_public\":true,\"sensor\":\"foo\"}"
+
+headers = {
+    'accept': "application/vnd.api+json",
+    'organization-id': "YOUR ORG ID HERE",
+    'organization-api-key': "YOUR API KEY HERE",
+    'content-type': "application/vnd.api+json"
+    }
+
+conn.request("POST", "/api/external/v1/api/external/v1/sensors/foo/sensordata/", payload, headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
+```
+
+```ruby
+require 'uri'
+require 'net/http'
+
+url = URI("https://cloud.autumnapp.com/api/external/v1/api/external/v1/sensors/foo/sensordata/")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+request = Net::HTTP::Post.new(url)
+request["accept"] = 'application/vnd.api+json'
+request["organization-id"] = 'YOUR ORG ID HERE'
+request["organization-api-key"] = 'YOUR API KEY HERE'
+request["content-type"] = 'application/vnd.api+json'
+request.body = "{\"x_axis_value\":\"foo\",\"timestamp\":\"foo\",\"longitude\":\"foo\",\"related_file\":\"foo\",\"value\":\"foo\",\"raw_data\":\"foo\",\"latitude\":\"foo\",\"is_public\":true,\"sensor\":\"foo\"}"
+
+response = http.request(request)
+puts response.read_body
+```
+
+```php
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://cloud.autumnapp.com/api/external/v1/api/external/v1/sensors/foo/sensordata/",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => "{\"x_axis_value\":\"foo\",\"timestamp\":\"foo\",\"longitude\":\"foo\",\"related_file\":\"foo\",\"value\":\"foo\",\"raw_data\":\"foo\",\"latitude\":\"foo\",\"is_public\":true,\"sensor\":\"foo\"}",
+  CURLOPT_HTTPHEADER => array(
+    "accept: application/vnd.api+json",
+    "content-type: application/vnd.api+json",
+    "organization-id: YOUR ORG ID HERE",
+    "organization-api-key: YOUR API KEY HERE"
+  ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "timestamp": "foo",
+  "longitude": "foo",
+  "latitude": "foo",
+  "value": "foo",
+  "sensor": "foo"
 }
 ```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
