@@ -269,13 +269,13 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>This API documentation is to give you an overview for connecting with the Autumn http API. The Autumn platform is expecting to receive a json string so we will look at that also.</p>
+<p>This API documentation is to give you an overview for connecting with the Datacooee http API. The Datacooee platform is expecting to receive a json string so we will look at that also.</p>
 
 <p><em>(Here are just a few quick tips to get you started)</em></p>
 <h1 id='you-will-need'>You will need</h1>
 <ul>
-<li><p>Set up your <strong>Input</strong> in Autumn</p></li>
-<li><p>Select <strong>Data Source</strong> &quot;Send to Autumn API&quot; in the Input setup</p></li>
+<li><p>Set up your <strong>Input</strong> in Datacooee</p></li>
+<li><p>Select <strong>Data Source</strong> &quot;Send to Datacooee API&quot; in the Input setup</p></li>
 <li><p>Make a note of your <em>Organisation ID</em> and <em>API KEY</em> for the header</p></li>
 <li><p>and the <em>device id</em> to go in your json string</p></li>
 </ul>
@@ -288,7 +288,7 @@
   </span><span class="s2">"ORGANIZATION-API-KEY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{API KEY}}"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='json'>JSON</h1>
-<p>The data we post to Autumn is a JSON string this is consistant no matter what langauage you are using.</p>
+<p>The data we post to Datacooee is a JSON string this is consistant no matter what langauage you are using.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SensorData"</span><span class="p">,</span><span class="w">
@@ -312,7 +312,7 @@
 <li>Keep formating in this order</li>
 </ul>
 
-<p>This should get data into the Autumn platform. You are welcome to utilise whichever language you&#39;re happy with.</p>
+<p>This should get data into the Datacooee platform. You are welcome to utilise whichever language you&#39;re happy with.</p>
 <h3 id='extra-data-that-can-be-sent'>Extra data that can be sent</h3>
 <ul>
 <li>Latitude and Longitude</li>
@@ -320,7 +320,7 @@
 <h1 id='endpoint'>Endpoint</h1>
 <p>This endpoint is to post data.</p>
 <h3 id='http-post'>HTTP Post</h3>
-<p><code>POST http://cloud.autumnapp.com</code></p>
+<p><code>POST http://cloud.mydata.management</code></p>
 
 <p><code>URI /api/external/v1/sensors/{sensor_pk}/sensordata/</code></p>
 <h3 id='parameters'>Parameters</h3>
@@ -403,7 +403,7 @@
 </tr>
 </tbody></table>
 <h2 id='post-data'>Post data</h2><pre class="highlight shell tab-shell"><code>curl --request POST <span class="se">\</span>
-  --url https://cloud.autumnapp.com/api/external/v1/api/external/v1/sensors/foo/sensordata/ <span class="se">\</span>
+  --url https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/ <span class="se">\</span>
   --header <span class="s1">'accept: application/vnd.api+json'</span> <span class="se">\</span>
   --header <span class="s1">'content-type: application/vnd.api+json'</span> <span class="se">\</span>
   --header <span class="s1">'organization-id: YOUR ORG ID HERE'</span> <span class="se">\</span>
@@ -413,7 +413,7 @@
 
 <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">"method"</span><span class="p">:</span> <span class="s2">"POST"</span><span class="p">,</span>
-  <span class="s2">"hostname"</span><span class="p">:</span> <span class="s2">"cloud.autumnapp.com"</span><span class="p">,</span>
+  <span class="s2">"hostname"</span><span class="p">:</span> <span class="s2">"cloud.mydata.management"</span><span class="p">,</span>
   <span class="s2">"port"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
   <span class="s2">"path"</span><span class="p">:</span> <span class="s2">"/api/external/v1/api/external/v1/sensors/foo/sensordata/"</span><span class="p">,</span>
   <span class="s2">"headers"</span><span class="p">:</span> <span class="p">{</span>
@@ -458,7 +458,7 @@
 
 </span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
 
-    </span><span class="n">url</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"https://cloud.autumnapp.com/api/external/v1/api/external/v1/sensors/foo/sensordata/"</span><span class="x">
+    </span><span class="n">url</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/"</span><span class="x">
 
     </span><span class="n">payload</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">strings</span><span class="o">.</span><span class="n">NewReader</span><span class="p">(</span><span class="s">"{</span><span class="se">\"</span><span class="s">x_axis_value</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">timestamp</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">longitude</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">related_file</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">value</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">raw_data</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">latitude</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">is_public</span><span class="se">\"</span><span class="s">:true,</span><span class="se">\"</span><span class="s">sensor</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">}"</span><span class="p">)</span><span class="x">
 
@@ -480,7 +480,7 @@
 </span><span class="p">}</span><span class="x">
 </span></code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">http.client</span>
 
-<span class="n">conn</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="s">"cloud.autumnapp.com"</span><span class="p">)</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">http</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">HTTPSConnection</span><span class="p">(</span><span class="s">"cloud.mydata.management"</span><span class="p">)</span>
 
 <span class="n">payload</span> <span class="o">=</span> <span class="s">"{</span><span class="se">\"</span><span class="s">x_axis_value</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">timestamp</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">longitude</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">related_file</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">value</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">raw_data</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">latitude</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">is_public</span><span class="se">\"</span><span class="s">:true,</span><span class="se">\"</span><span class="s">sensor</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">}"</span>
 
@@ -500,7 +500,7 @@
 </code></pre><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'uri'</span>
 <span class="nb">require</span> <span class="s1">'net/http'</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"https://cloud.autumnapp.com/api/external/v1/api/external/v1/sensors/foo/sensordata/"</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/"</span><span class="p">)</span>
 
 <span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
 <span class="n">http</span><span class="p">.</span><span class="nf">use_ssl</span> <span class="o">=</span> <span class="kp">true</span>
@@ -520,7 +520,7 @@
 <span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
 <span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-  <span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://cloud.autumnapp.com/api/external/v1/api/external/v1/sensors/foo/sensordata/"</span><span class="p">,</span>
+  <span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/"</span><span class="p">,</span>
   <span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
   <span class="nx">CURLOPT_ENCODING</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">,</span>
   <span class="nx">CURLOPT_MAXREDIRS</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
