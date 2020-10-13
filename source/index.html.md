@@ -35,7 +35,7 @@ _(These are just a few tips to get you started. We will be expanding the API ove
 
  * Select **Data Source** "API" in the Input setup
 
- * Make a note of your *Organisation ID* and *API KEY* for the header
+ * Make a note of your *Organisation ID* and *Organisation API Key* for the header
 
  * and the *device id* to go in your json string
 
@@ -54,7 +54,7 @@ The header data that needs to be sent includes both an Organisation ID and Organ
 
 # JSON
 
-The data we post to Datacooee is a JSON string this is consistent no matter what langauage you are using.
+The data we post to Datacooee is a JSON string this is consistent no matter what language you are using.
 
 ```json
 {
