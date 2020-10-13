@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Datacooee API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -255,10 +255,10 @@
                   <li>
                     <a href="#definitions" class="toc-h2 toc-link" data-title="Definitions">Definitions</a>
                   </li>
-                  <li>
-                    <a href="#post-data" class="toc-h2 toc-link" data-title="Post data">Post data</a>
-                  </li>
               </ul>
+          </li>
+          <li>
+            <a href="#post-data" class="toc-h1 toc-link" data-title="Post data">Post data</a>
           </li>
       </div>
         <ul class="toc-footer">
@@ -269,18 +269,25 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>This API documentation is to give you an overview for connecting with the Datacooee http API. The Datacooee platform is expecting to receive a json string so we will look at that also.</p>
+<p>This API documentation is to give you an overview for connecting inputs to the Datacooee http API.</p>
 
-<p><em>(Here are just a few quick tips to get you started)</em></p>
+<p>We will cover:</p>
+
+<ul>
+<li>Header details</li>
+<li>json string</li>
+</ul>
+
+<p><em>(These are just a few tips to get you started. We will be expanding the API over time)</em></p>
 <h1 id='you-will-need'>You will need</h1>
 <ul>
 <li><p>Set up your <strong>Input</strong> in Datacooee</p></li>
-<li><p>Select <strong>Data Source</strong> &quot;Send to Datacooee API&quot; in the Input setup</p></li>
+<li><p>Select <strong>Data Source</strong> &quot;API&quot; in the Input setup</p></li>
 <li><p>Make a note of your <em>Organisation ID</em> and <em>API KEY</em> for the header</p></li>
 <li><p>and the <em>device id</em> to go in your json string</p></li>
 </ul>
 <h1 id='header'>Header</h1>
-<p>The header data that needs to be sent includes both an Oganisation ID and Organisation API Key.</p>
+<p>The header data that needs to be sent includes both an Organisation ID and Organisation API Key.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/vnd.api+json"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"Accept"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/vnd.api+json"</span><span class="p">,</span><span class="w">
@@ -288,7 +295,7 @@
   </span><span class="s2">"ORGANIZATION-API-KEY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{API KEY}}"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='json'>JSON</h1>
-<p>The data we post to Datacooee is a JSON string this is consistant no matter what langauage you are using.</p>
+<p>The data we post to Datacooee is a JSON string this is consistent no matter what langauage you are using.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SensorData"</span><span class="p">,</span><span class="w">
@@ -309,10 +316,10 @@
 </span></code></pre>
 <ul>
 <li>Base information</li>
-<li>Keep formating in this order</li>
+<li>Keep formatting in this order</li>
 </ul>
 
-<p>This should get data into the Datacooee platform. You are welcome to utilise whichever language you&#39;re happy with.</p>
+<p>You should now have data going into the Datacooee platform. You are welcome to utilise whichever language you&#39;re happy with.</p>
 <h3 id='extra-data-that-can-be-sent'>Extra data that can be sent</h3>
 <ul>
 <li>Latitude and Longitude</li>
@@ -402,7 +409,9 @@
 <td>String</td>
 </tr>
 </tbody></table>
-<h2 id='post-data'>Post data</h2><pre class="highlight shell tab-shell"><code>curl --request POST <span class="se">\</span>
+<h1 id='post-data'>Post data</h1>
+<p>Here&#39;s are some example snippets to get to started.</p>
+<pre class="highlight shell tab-shell"><code>curl --request POST <span class="se">\</span>
   --url https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/ <span class="se">\</span>
   --header <span class="s1">'accept: application/vnd.api+json'</span> <span class="se">\</span>
   --header <span class="s1">'content-type: application/vnd.api+json'</span> <span class="se">\</span>
