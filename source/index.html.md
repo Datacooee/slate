@@ -20,15 +20,15 @@ search: true
 
 # Introduction
 
-This API documentation is to give you an overview for connecting with the Autumn http API. The Autumn platform is expecting to receive a json string so we will look at that also.
+This API documentation is to give you an overview for connecting with the Datacooee http API. The Datacooee platform is expecting to receive a json string so we will look at that also.
 
 _(Here are just a few quick tips to get you started)_
 
 # You will need
 
- * Set up your **Input** in Autumn
+ * Set up your **Input** in Datacooee
 
- * Select **Data Source** "Send to Autumn API" in the Input setup
+ * Select **Data Source** "Send to Datacooee API" in the Input setup
 
  * Make a note of your *Organisation ID* and *API KEY* for the header
 
@@ -49,7 +49,7 @@ The header data that needs to be sent includes both an Oganisation ID and Organi
 
 # JSON
 
-The data we post to Autumn is a JSON string this is consistant no matter what langauage you are using.
+The data we post to Datacooee is a JSON string this is consistant no matter what langauage you are using.
 
 ```json
 {
@@ -74,7 +74,7 @@ The data we post to Autumn is a JSON string this is consistant no matter what la
   * Base information
   * Keep formating in this order
 
-This should get data into the Autumn platform. You are welcome to utilise whichever language you're happy with.
+This should get data into the Datacooee platform. You are welcome to utilise whichever language you're happy with.
 
 ### Extra data that can be sent
 
@@ -86,7 +86,7 @@ This endpoint is to post data.
 
 ### HTTP Post
 
-`POST http://cloud.autumnapp.com`
+`POST http://cloud.mydata.management`
 
 `URI /api/external/v1/sensors/{sensor_pk}/sensordata/`
 
@@ -117,7 +117,7 @@ sensor | true | Request Body | String
 
 ```shell
 curl --request POST \
-  --url https://cloud.autumnapp.com/api/external/v1/api/external/v1/sensors/foo/sensordata/ \
+  --url https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/ \
   --header 'accept: application/vnd.api+json' \
   --header 'content-type: application/vnd.api+json' \
   --header 'organization-id: YOUR ORG ID HERE' \
@@ -130,7 +130,7 @@ var http = require("https");
 
 var options = {
   "method": "POST",
-  "hostname": "cloud.autumnapp.com",
+  "hostname": "cloud.mydata.management",
   "port": null,
   "path": "/api/external/v1/api/external/v1/sensors/foo/sensordata/",
   "headers": {
@@ -178,7 +178,7 @@ import (
 
 func main() {
 
-	url := "https://cloud.autumnapp.com/api/external/v1/api/external/v1/sensors/foo/sensordata/"
+	url := "https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/"
 
 	payload := strings.NewReader("{\"x_axis_value\":\"foo\",\"timestamp\":\"foo\",\"longitude\":\"foo\",\"related_file\":\"foo\",\"value\":\"foo\",\"raw_data\":\"foo\",\"latitude\":\"foo\",\"is_public\":true,\"sensor\":\"foo\"}")
 
@@ -203,7 +203,7 @@ func main() {
 ```python
 import http.client
 
-conn = http.client.HTTPSConnection("cloud.autumnapp.com")
+conn = http.client.HTTPSConnection("cloud.mydata.management")
 
 payload = "{\"x_axis_value\":\"foo\",\"timestamp\":\"foo\",\"longitude\":\"foo\",\"related_file\":\"foo\",\"value\":\"foo\",\"raw_data\":\"foo\",\"latitude\":\"foo\",\"is_public\":true,\"sensor\":\"foo\"}"
 
@@ -226,7 +226,7 @@ print(data.decode("utf-8"))
 require 'uri'
 require 'net/http'
 
-url = URI("https://cloud.autumnapp.com/api/external/v1/api/external/v1/sensors/foo/sensordata/")
+url = URI("https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -249,7 +249,7 @@ puts response.read_body
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://cloud.autumnapp.com/api/external/v1/api/external/v1/sensors/foo/sensordata/",
+  CURLOPT_URL => "https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
