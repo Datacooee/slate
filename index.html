@@ -412,7 +412,7 @@
 <h1 id='post-data'>Post data</h1>
 <p>Here&#39;s are some example snippets to get to started.</p>
 <pre class="highlight shell tab-shell"><code>curl --request POST <span class="se">\</span>
-  --url https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/ <span class="se">\</span>
+  --url https://cloud.mydata.management/api/external/v1/sensors/foo/sensordata/ <span class="se">\</span>
   --header <span class="s1">'accept: application/vnd.api+json'</span> <span class="se">\</span>
   --header <span class="s1">'content-type: application/vnd.api+json'</span> <span class="se">\</span>
   --header <span class="s1">'organization-id: YOUR ORG ID HERE'</span> <span class="se">\</span>
@@ -424,7 +424,7 @@
   <span class="s2">"method"</span><span class="p">:</span> <span class="s2">"POST"</span><span class="p">,</span>
   <span class="s2">"hostname"</span><span class="p">:</span> <span class="s2">"cloud.mydata.management"</span><span class="p">,</span>
   <span class="s2">"port"</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="s2">"path"</span><span class="p">:</span> <span class="s2">"/api/external/v1/api/external/v1/sensors/foo/sensordata/"</span><span class="p">,</span>
+  <span class="s2">"path"</span><span class="p">:</span> <span class="s2">"/api/external/v1/sensors/foo/sensordata/"</span><span class="p">,</span>
   <span class="s2">"headers"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"accept"</span><span class="p">:</span> <span class="s2">"application/vnd.api+json"</span><span class="p">,</span>
     <span class="s2">"organization-id"</span><span class="p">:</span> <span class="s2">"YOUR ORG ID HERE"</span><span class="p">,</span>
@@ -467,7 +467,7 @@
 
 </span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
 
-    </span><span class="n">url</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/"</span><span class="x">
+    </span><span class="n">url</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="s">"https://cloud.mydata.management/api/external/v1/sensors/foo/sensordata/"</span><span class="x">
 
     </span><span class="n">payload</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">strings</span><span class="o">.</span><span class="n">NewReader</span><span class="p">(</span><span class="s">"{</span><span class="se">\"</span><span class="s">x_axis_value</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">timestamp</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">longitude</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">related_file</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">value</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">raw_data</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">latitude</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">is_public</span><span class="se">\"</span><span class="s">:true,</span><span class="se">\"</span><span class="s">sensor</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">foo</span><span class="se">\"</span><span class="s">}"</span><span class="p">)</span><span class="x">
 
@@ -500,7 +500,7 @@
     <span class="s">'content-type'</span><span class="p">:</span> <span class="s">"application/vnd.api+json"</span>
     <span class="p">}</span>
 
-<span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="s">"/api/external/v1/api/external/v1/sensors/foo/sensordata/"</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="s">"/api/external/v1/sensors/foo/sensordata/"</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
 
 <span class="n">res</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
@@ -509,7 +509,7 @@
 </code></pre><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'uri'</span>
 <span class="nb">require</span> <span class="s1">'net/http'</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/"</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"https://cloud.mydata.management/api/external/v1/sensors/foo/sensordata/"</span><span class="p">)</span>
 
 <span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
 <span class="n">http</span><span class="p">.</span><span class="nf">use_ssl</span> <span class="o">=</span> <span class="kp">true</span>
@@ -529,7 +529,7 @@
 <span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
 <span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-  <span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/"</span><span class="p">,</span>
+  <span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://cloud.mydata.management/api/external/v1/sensors/foo/sensordata/"</span><span class="p">,</span>
   <span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
   <span class="nx">CURLOPT_ENCODING</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">,</span>
   <span class="nx">CURLOPT_MAXREDIRS</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
