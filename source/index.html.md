@@ -37,18 +37,25 @@ _(These are just a few tips to get you started. We will be expanding the API ove
 
  * Make a note of your *Organisation ID* and *Organisation API Key* for the header
 
- * and the *device id* to go in your json string
+ * For json string you will need the next:
+   - *input id* - id of your created input
+   - *value* - required field for uploaded value
+   - *timestamp* - required field for uploading time. Time string with ISO format
+   - *latitude* - extra field for uploading latitude value
+   - *longitude* - extra field for uploading latitude value
 
 # Header
 
 The header data that needs to be sent includes both an Organisation ID and Organisation API Key.
+Example:
+ORGANIZATION_ID = "ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng="
+ORGANIZATION-API-KEY = "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"
 
 ```json
 {
   "Content-Type": "application/vnd.api+json",
-  "Accept": "application/vnd.api+json",
-  "ORGANIZATION-ID": "{{ORG ID}}",
-  "ORGANIZATION-API-KEY": "{{API KEY}}"
+  "ORGANIZATION-ID": "{{ ORGANIZATION_ID}}",
+  "ORGANIZATION-API-KEY": "{{ ORGANIZATION-API-KEY }}"
 }
 ```
 
@@ -56,19 +63,29 @@ The header data that needs to be sent includes both an Organisation ID and Organ
 
 The data we post to Datacooee is a JSON string this is consistent no matter what language you are using.
 
+Example:
+DATA_VALUE = 12.5
+TIMESTAMP = "2020-10-13T14:02:39.489Z"
+LATITUDE_VALUE = 40.730610
+LONGITUDE_VALUE = -73.935242
+INPUT_ID = "senxxxxxxxxxx"
+
 ```json
 {
   "data": {
     "type": "SensorData",
     "id": "null",
     "attributes": {
-      "value": "{{DATA VALUE}}"
+      "value": "{{ DATA_VALUE }}",
+      "timestamp": "{{ TIMESTAMP }}",
+      "latitude": "{{ LATITUDE_VALUE }}",
+      "longitude": "{{ LONGITUDE_VALUE }}"
     },
     "relationships": {
       "sensor": {
         "data": {
           "type": "Sensor",
-          "id": "{{DEVICE ID}}"
+          "id": "{{ INPUT_ID }}"
         }
       }
     }
@@ -81,25 +98,23 @@ The data we post to Datacooee is a JSON string this is consistent no matter what
 
 You should now have data going into the Datacooee platform. You are welcome to utilise whichever language you're happy with.
 
-### Extra data that can be sent
-
-* Latitude and Longitude
-
 # Endpoint
 
 This endpoint is to post data.
 
 ### HTTP Post
 
+Upload data into the Datacooee platform.
+
 `POST http://cloud.mydata.management`
 
-`URI /api/external/v1/sensors/{sensor_pk}/sensordata/`
+`URI /api/external/v1/inputs/{input_pk}/inputdata/`
 
 ### Parameters
 
 Parameter | Required | Location | Type | Definition
 --------- | ------- | ----------- | ----- | ----------
-sensor_pk | true | Path (URL) | String |
+input_pk | true | Path (URL) | String |
 data | true | Request Body | Object | Sensor Data
 
 ### Responses
@@ -118,18 +133,23 @@ latitude | false | Request Body | String
 value | true | Request Body | String
 sensor | true | Request Body | String
 
-# Post data
+# Examples
 
 Here's are some example snippets to get to started.
+Examples use mocked data below.
+ORGANIZATION_ID = "ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng="
+ORGANIZATION-API-KEY = "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"
+DATA_VALUE = 12.5
+TIMESTAMP = "2020-10-13T14:02:39.489Z"
+INPUT_ID = "senxxxxxxxxxx" 
 
 ```shell
 curl --request POST \
-  --url https://cloud.mydata.management/api/external/v1/sensors/foo/sensordata/ \
-  --header 'accept: application/vnd.api+json' \
+  --url https://cloud.mydata.management/api/external/v1/inputs/senxxxxxxxxxx/inputdata/ \
   --header 'content-type: application/vnd.api+json' \
-  --header 'organization-id: YOUR ORG ID HERE' \
-  --header 'organization-api-key: YOUR API KEY HERE' \
-  --data '{"x_axis_value":"foo","timestamp":"foo","longitude":"foo","related_file":"foo","value":"foo","raw_data":"foo","latitude":"foo","is_public":true,"sensor":"foo"}'
+  --header 'organization-id: ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng=' \
+  --header 'organization-api-key: f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61' \
+  --data '{"data":{"type":"SensorData", "id": "null", "attributes": { "value": "12.5", "timestamp": "2020-10-13T14:02:39.489Z"}, "relationships": { "sensor": { "data": { "type": "Sensor", "id": "senxxxxxxxxxx" }}}}}'
 ```
 
 ```javascript
@@ -139,14 +159,33 @@ var options = {
   "method": "POST",
   "hostname": "cloud.mydata.management",
   "port": null,
-  "path": "/api/external/v1/sensors/foo/sensordata/",
+  "path": "/api/external/v1/inputs/senxxxxxxxxxx/inputdata/",
   "headers": {
-    "accept": "application/vnd.api+json",
-    "organization-id": "YOUR ORG ID HERE",
-    "organization-api-key": "YOUR API KEY HERE",
+    "organization-id": "ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng=",
+    "organization-api-key": "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61",
     "content-type": "application/vnd.api+json"
+  }  
+};
+
+var data = {
+  "data": {
+    "type": "SensorData",
+    "id": "null",
+    "attributes": {
+      "value": "12.5",
+      "timestamp": "2020-10-13T14:02:39.489Z"
+    },
+    "relationships": {
+      "sensor": {
+        "data": {
+          "type": "Sensor",
+          "id": "senxxxxxxxxxx"
+        }
+      }
+    }
   }
 };
+
 
 var req = http.request(options, function (res) {
   var chunks = [];
@@ -161,15 +200,7 @@ var req = http.request(options, function (res) {
   });
 });
 
-req.write(JSON.stringify({ x_axis_value: 'foo',
-  timestamp: 'foo',
-  longitude: 'foo',
-  related_file: 'foo',
-  value: 'foo',
-  raw_data: 'foo',
-  latitude: 'foo',
-  is_public: true,
-  sensor: 'foo' }));
+req.write(JSON.stringify(data));
 req.end();
 ```
 
@@ -185,15 +216,15 @@ import (
 
 func main() {
 
-	url := "https://cloud.mydata.management/api/external/v1/sensors/foo/sensordata/"
+	url := "https://cloud.mydata.management/api/external/v1/inputs/senxxxxxxxxxx/inputdata/"
 
-	payload := strings.NewReader("{\"x_axis_value\":\"foo\",\"timestamp\":\"foo\",\"longitude\":\"foo\",\"related_file\":\"foo\",\"value\":\"foo\",\"raw_data\":\"foo\",\"latitude\":\"foo\",\"is_public\":true,\"sensor\":\"foo\"}")
+	payload := strings.NewReader('{"data":{"type":"SensorData", "id": "null", "attributes": { "value": "12.5", "timestamp": "2020-10-13T14:02:39.489Z"}, "relationships": { "sensor": { "data": { "type": "Sensor", "id": "senxxxxxxxxxx" }}}}}')
 
 	req, _ := http.NewRequest("POST", url, payload)
 
 	req.Header.Add("accept", "application/vnd.api+json")
-	req.Header.Add("organization-id", "YOUR ORG ID HERE")
-	req.Header.Add("organization-api-key", "YOUR API KEY HERE")
+	req.Header.Add("organization-id", "ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng=")
+	req.Header.Add("organization-api-key", "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61")
 	req.Header.Add("content-type", "application/vnd.api+json")
 
 	res, _ := http.DefaultClient.Do(req)
@@ -212,16 +243,16 @@ import http.client
 
 conn = http.client.HTTPSConnection("cloud.mydata.management")
 
-payload = "{\"x_axis_value\":\"foo\",\"timestamp\":\"foo\",\"longitude\":\"foo\",\"related_file\":\"foo\",\"value\":\"foo\",\"raw_data\":\"foo\",\"latitude\":\"foo\",\"is_public\":true,\"sensor\":\"foo\"}"
+payload = '{"data":{"type":"SensorData", "id": "null", "attributes": { "value": "12.5", "timestamp": "2020-10-13T14:02:39.489Z"}, "relationships": { "sensor": { "data": { "type": "Sensor", "id": "senxxxxxxxxxx" }}}}}'
 
 headers = {
     'accept': "application/vnd.api+json",
-    'organization-id': "YOUR ORG ID HERE",
-    'organization-api-key': "YOUR API KEY HERE",
+    'organization-id': "ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng=",
+    'organization-api-key': "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61",
     'content-type': "application/vnd.api+json"
     }
 
-conn.request("POST", "/api/external/v1/sensors/foo/sensordata/", payload, headers)
+conn.request("POST", "/api/external/v1/inputs/senxxxxxxxxxx/inputdata/", payload, headers)
 
 res = conn.getresponse()
 data = res.read()
@@ -233,7 +264,7 @@ print(data.decode("utf-8"))
 require 'uri'
 require 'net/http'
 
-url = URI("https://cloud.mydata.management/api/external/v1/sensors/foo/sensordata/")
+url = URI("https://cloud.mydata.management/api/external/v1/inputs/senxxxxxxxxxx/inputdata/")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -241,10 +272,10 @@ http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
 request = Net::HTTP::Post.new(url)
 request["accept"] = 'application/vnd.api+json'
-request["organization-id"] = 'YOUR ORG ID HERE'
-request["organization-api-key"] = 'YOUR API KEY HERE'
+request["organization-id"] = 'ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng='
+request["organization-api-key"] = 'f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61'
 request["content-type"] = 'application/vnd.api+json'
-request.body = "{\"x_axis_value\":\"foo\",\"timestamp\":\"foo\",\"longitude\":\"foo\",\"related_file\":\"foo\",\"value\":\"foo\",\"raw_data\":\"foo\",\"latitude\":\"foo\",\"is_public\":true,\"sensor\":\"foo\"}"
+request.body = '{"data":{"type":"SensorData", "id": "null", "attributes": { "value": "12.5", "timestamp": "2020-10-13T14:02:39.489Z"}, "relationships": { "sensor": { "data": { "type": "Sensor", "id": "senxxxxxxxxxx" }}}}}'
 
 response = http.request(request)
 puts response.read_body
@@ -256,19 +287,19 @@ puts response.read_body
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://cloud.mydata.management/api/external/v1/sensors/foo/sensordata/",
+  CURLOPT_URL => "https://cloud.mydata.management/api/external/v1/inputs/senxxxxxxxxxx/inputdata/",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\"x_axis_value\":\"foo\",\"timestamp\":\"foo\",\"longitude\":\"foo\",\"related_file\":\"foo\",\"value\":\"foo\",\"raw_data\":\"foo\",\"latitude\":\"foo\",\"is_public\":true,\"sensor\":\"foo\"}",
+  CURLOPT_POSTFIELDS => '{"data":{"type":"SensorData", "id": "null", "attributes": { "value": "12.5", "timestamp": "2020-10-13T14:02:39.489Z"}, "relationships": { "sensor": { "data": { "type": "Sensor", "id": "senxxxxxxxxxx" }}}}}',
   CURLOPT_HTTPHEADER => array(
     "accept: application/vnd.api+json",
     "content-type: application/vnd.api+json",
-    "organization-id: YOUR ORG ID HERE",
-    "organization-api-key: YOUR API KEY HERE"
+    "organization-id: ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng=",
+    "organization-api-key: f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"
   ),
 ));
 
@@ -288,10 +319,21 @@ if ($err) {
 
 ```json
 {
-  "timestamp": "foo",
-  "longitude": "foo",
-  "latitude": "foo",
-  "value": "foo",
-  "sensor": "foo"
+    "data": {
+        "type": "SensorData",
+        "id": "123456789",
+        "attributes": {
+            "timestamp": "2020-10-13T14:02:39.489000Z",
+            "value": "12.5"
+        },
+        "relationships": {
+            "sensor": {
+                "data": {
+                    "type": "Sensor",
+                    "id": "senxxxxxxxxxx"
+                }
+            }
+        }
+    }
 }
 ```
