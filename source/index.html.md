@@ -124,7 +124,7 @@ Here's are some example snippets to get to started.
 
 ```shell
 curl --request POST \
-  --url https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/ \
+  --url https://cloud.mydata.management/api/external/v1/sensors/foo/sensordata/ \
   --header 'accept: application/vnd.api+json' \
   --header 'content-type: application/vnd.api+json' \
   --header 'organization-id: YOUR ORG ID HERE' \
@@ -139,7 +139,7 @@ var options = {
   "method": "POST",
   "hostname": "cloud.mydata.management",
   "port": null,
-  "path": "/api/external/v1/api/external/v1/sensors/foo/sensordata/",
+  "path": "/api/external/v1/sensors/foo/sensordata/",
   "headers": {
     "accept": "application/vnd.api+json",
     "organization-id": "YOUR ORG ID HERE",
@@ -185,7 +185,7 @@ import (
 
 func main() {
 
-	url := "https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/"
+	url := "https://cloud.mydata.management/api/external/v1/sensors/foo/sensordata/"
 
 	payload := strings.NewReader("{\"x_axis_value\":\"foo\",\"timestamp\":\"foo\",\"longitude\":\"foo\",\"related_file\":\"foo\",\"value\":\"foo\",\"raw_data\":\"foo\",\"latitude\":\"foo\",\"is_public\":true,\"sensor\":\"foo\"}")
 
@@ -221,7 +221,7 @@ headers = {
     'content-type': "application/vnd.api+json"
     }
 
-conn.request("POST", "/api/external/v1/api/external/v1/sensors/foo/sensordata/", payload, headers)
+conn.request("POST", "/api/external/v1/sensors/foo/sensordata/", payload, headers)
 
 res = conn.getresponse()
 data = res.read()
@@ -233,7 +233,7 @@ print(data.decode("utf-8"))
 require 'uri'
 require 'net/http'
 
-url = URI("https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/")
+url = URI("https://cloud.mydata.management/api/external/v1/sensors/foo/sensordata/")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -256,7 +256,7 @@ puts response.read_body
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://cloud.mydata.management/api/external/v1/api/external/v1/sensors/foo/sensordata/",
+  CURLOPT_URL => "https://cloud.mydata.management/api/external/v1/sensors/foo/sensordata/",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
