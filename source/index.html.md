@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Datacooee API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -20,15 +20,20 @@ search: true
 
 # Introduction
 
-This API documentation is to give you an overview for connecting with the Datacooee http API. The Datacooee platform is expecting to receive a json string so we will look at that also.
+This API documentation is to give you an overview for connecting inputs to the Datacooee http API.
 
-_(Here are just a few quick tips to get you started)_
+We will cover:
+
+* Header details
+* json string
+
+_(These are just a few tips to get you started. We will be expanding the API over time)_
 
 # You will need
 
  * Set up your **Input** in Datacooee
 
- * Select **Data Source** "Send to Datacooee API" in the Input setup
+ * Select **Data Source** "API" in the Input setup
 
  * Make a note of your *Organisation ID* and *API KEY* for the header
 
@@ -36,7 +41,7 @@ _(Here are just a few quick tips to get you started)_
 
 # Header
 
-The header data that needs to be sent includes both an Oganisation ID and Organisation API Key.
+The header data that needs to be sent includes both an Organisation ID and Organisation API Key.
 
 ```json
 {
@@ -49,7 +54,7 @@ The header data that needs to be sent includes both an Oganisation ID and Organi
 
 # JSON
 
-The data we post to Datacooee is a JSON string this is consistant no matter what langauage you are using.
+The data we post to Datacooee is a JSON string this is consistent no matter what langauage you are using.
 
 ```json
 {
@@ -72,9 +77,9 @@ The data we post to Datacooee is a JSON string this is consistant no matter what
 ```
 
   * Base information
-  * Keep formating in this order
+  * Keep formatting in this order
 
-This should get data into the Datacooee platform. You are welcome to utilise whichever language you're happy with.
+You should now have data going into the Datacooee platform. You are welcome to utilise whichever language you're happy with.
 
 ### Extra data that can be sent
 
@@ -113,7 +118,9 @@ latitude | false | Request Body | String
 value | true | Request Body | String
 sensor | true | Request Body | String
 
-## Post data
+# Post data
+
+Here's are some example snippets to get to started.
 
 ```shell
 curl --request POST \
