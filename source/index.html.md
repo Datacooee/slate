@@ -61,14 +61,7 @@ ORGANIZATION-API-KEY = "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"
 
 # JSON
 
-The data we post to Datacooee is a JSON string this is consistent no matter what language you are using.  
-
-Example:  
-DATA_VALUE = 12.5  
-TIMESTAMP = "2020-10-13T14:02:39.489Z"  
-LATITUDE_VALUE = 40.730610  
-LONGITUDE_VALUE = -73.935242  
-INPUT_ID = "senxxxxxxxxxx"  
+The data we post to Datacooee is a JSON string this is consistent no matter what language you are using.   
 
 ```json
 {
@@ -97,6 +90,13 @@ INPUT_ID = "senxxxxxxxxxx"
   * Keep formatting in this order
 
 You should now have data going into the Datacooee platform. You are welcome to utilise whichever language you're happy with.
+
+Examples:  
+DATA_VALUE = 12.5  
+TIMESTAMP = "2020-10-13T14:02:39.489Z"  
+LATITUDE_VALUE = 40.730610  
+LONGITUDE_VALUE = -73.935242  
+INPUT_ID = "senxxxxxxxxxx" 
 
 # Endpoint
 
