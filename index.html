@@ -300,14 +300,7 @@ ORGANIZATION-API-KEY = &quot;f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61&quot;  </p>
   </span><span class="s2">"ORGANIZATION-API-KEY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ ORGANIZATION-API-KEY }}"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='json'>JSON</h1>
-<p>The data we post to Datacooee is a JSON string this is consistent no matter what language you are using.  </p>
-
-<p>Example:<br>
-DATA_VALUE = 12.5<br>
-TIMESTAMP = &quot;2020-10-13T14:02:39.489Z&quot;<br>
-LATITUDE_VALUE = 40.730610<br>
-LONGITUDE_VALUE = -73.935242<br>
-INPUT_ID = &quot;senxxxxxxxxxx&quot;  </p>
+<p>The data we post to Datacooee is a JSON string this is consistent no matter what language you are using.   </p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SensorData"</span><span class="p">,</span><span class="w">
@@ -335,6 +328,13 @@ INPUT_ID = &quot;senxxxxxxxxxx&quot;  </p>
 </ul>
 
 <p>You should now have data going into the Datacooee platform. You are welcome to utilise whichever language you&#39;re happy with.</p>
+
+<p>Examples:<br>
+DATA_VALUE = 12.5<br>
+TIMESTAMP = &quot;2020-10-13T14:02:39.489Z&quot;<br>
+LATITUDE_VALUE = 40.730610<br>
+LONGITUDE_VALUE = -73.935242<br>
+INPUT_ID = &quot;senxxxxxxxxxx&quot; </p>
 <h1 id='endpoint'>Endpoint</h1>
 <p>This endpoint is to post data.</p>
 <h3 id='http-post'>HTTP Post</h3>
