@@ -290,24 +290,24 @@
 </ul></li>
 </ul>
 <h1 id='header'>Header</h1>
-<p>The header data that needs to be sent includes both an Organisation ID and Organisation API Key.
-Example:
-ORGANIZATION_ID = &quot;ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng=&quot;
-ORGANIZATION-API-KEY = &quot;f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61&quot;</p>
+<p>The header data that needs to be sent includes both an Organisation ID and Organisation API Key.<br>
+Example:<br>
+ORGANIZATION_ID = &quot;ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng=&quot;<br>
+ORGANIZATION-API-KEY = &quot;f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61&quot;  </p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/vnd.api+json"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ORGANIZATION-ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ ORGANIZATION_ID}}"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ORGANIZATION-API-KEY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ ORGANIZATION-API-KEY }}"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='json'>JSON</h1>
-<p>The data we post to Datacooee is a JSON string this is consistent no matter what language you are using.</p>
+<p>The data we post to Datacooee is a JSON string this is consistent no matter what language you are using.  </p>
 
-<p>Example:
-DATA_VALUE = 12.5
-TIMESTAMP = &quot;2020-10-13T14:02:39.489Z&quot;
-LATITUDE_VALUE = 40.730610
-LONGITUDE_VALUE = -73.935242
-INPUT_ID = &quot;senxxxxxxxxxx&quot;</p>
+<p>Example:<br>
+DATA_VALUE = 12.5<br>
+TIMESTAMP = &quot;2020-10-13T14:02:39.489Z&quot;<br>
+LATITUDE_VALUE = 40.730610<br>
+LONGITUDE_VALUE = -73.935242<br>
+INPUT_ID = &quot;senxxxxxxxxxx&quot;  </p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SensorData"</span><span class="p">,</span><span class="w">
@@ -423,13 +423,13 @@ INPUT_ID = &quot;senxxxxxxxxxx&quot;</p>
 </tr>
 </tbody></table>
 <h1 id='examples'>Examples</h1>
-<p>Here&#39;s are some example snippets to get to started.
-Examples use mocked data below.
-ORGANIZATION_ID = &quot;ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng=&quot;
-ORGANIZATION-API-KEY = &quot;f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61&quot;
-DATA_VALUE = 12.5
-TIMESTAMP = &quot;2020-10-13T14:02:39.489Z&quot;
-INPUT_ID = &quot;senxxxxxxxxxx&quot; </p>
+<p>Here&#39;s are some example snippets to get to started.<br>
+Examples use mocked data below.<br>
+ORGANIZATION_ID = &quot;ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng=&quot;<br>
+ORGANIZATION-API-KEY = &quot;f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61&quot;<br>
+DATA_VALUE = 12.5<br>
+TIMESTAMP = &quot;2020-10-13T14:02:39.489Z&quot;<br>
+INPUT_ID = &quot;senxxxxxxxxxx&quot;   </p>
 <pre class="highlight shell tab-shell"><code>curl --request POST <span class="se">\</span>
   --url https://cloud.mydata.management/api/external/v1/inputs/senxxxxxxxxxx/inputdata/ <span class="se">\</span>
   --header <span class="s1">'content-type: application/vnd.api+json'</span> <span class="se">\</span>
