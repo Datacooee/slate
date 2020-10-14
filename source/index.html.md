@@ -46,10 +46,10 @@ _(These are just a few tips to get you started. We will be expanding the API ove
 
 # Header
 
-The header data that needs to be sent includes both an Organisation ID and Organisation API Key.
-Example:
-ORGANIZATION_ID = "ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng="
-ORGANIZATION-API-KEY = "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"
+The header data that needs to be sent includes both an Organisation ID and Organisation API Key.  
+Example:  
+ORGANIZATION_ID = "ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng="  
+ORGANIZATION-API-KEY = "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"  
 
 ```json
 {
@@ -61,14 +61,14 @@ ORGANIZATION-API-KEY = "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"
 
 # JSON
 
-The data we post to Datacooee is a JSON string this is consistent no matter what language you are using.
+The data we post to Datacooee is a JSON string this is consistent no matter what language you are using.  
 
-Example:
-DATA_VALUE = 12.5
-TIMESTAMP = "2020-10-13T14:02:39.489Z"
-LATITUDE_VALUE = 40.730610
-LONGITUDE_VALUE = -73.935242
-INPUT_ID = "senxxxxxxxxxx"
+Example:  
+DATA_VALUE = 12.5  
+TIMESTAMP = "2020-10-13T14:02:39.489Z"  
+LATITUDE_VALUE = 40.730610  
+LONGITUDE_VALUE = -73.935242  
+INPUT_ID = "senxxxxxxxxxx"  
 
 ```json
 {
@@ -135,13 +135,13 @@ sensor | true | Request Body | String
 
 # Examples
 
-Here's are some example snippets to get to started.
-Examples use mocked data below.
-ORGANIZATION_ID = "ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng="
-ORGANIZATION-API-KEY = "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"
-DATA_VALUE = 12.5
-TIMESTAMP = "2020-10-13T14:02:39.489Z"
-INPUT_ID = "senxxxxxxxxxx" 
+Here's are some example snippets to get to started.  
+Examples use mocked data below.  
+ORGANIZATION_ID = "ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng="  
+ORGANIZATION-API-KEY = "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"  
+DATA_VALUE = 12.5  
+TIMESTAMP = "2020-10-13T14:02:39.489Z"  
+INPUT_ID = "senxxxxxxxxxx"   
 
 ```shell
 curl --request POST \
