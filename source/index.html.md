@@ -20,16 +20,18 @@ search: true
 
 # Introduction
 
-This API documentation is to give you an overview for connecting inputs to the Datacooee http API.
+This API documentation is to give you an overview for connecting inputs to the Datacooee platform and downloading data from it.
 
 We will cover:
 
-* Header details
-* json string
+* API for uploading data to Datacooee platform
+* API for downloading data from Datacooee platform
 
-_(These are just a few tips to get you started. We will be expanding the API over time)_
+# Upload data
 
-# You will need
+This endpoint is to post data.
+
+### You will need
 
  * Set up your **Input** in Datacooee
 
@@ -44,7 +46,7 @@ _(These are just a few tips to get you started. We will be expanding the API ove
    - *latitude* - extra field for uploading latitude value
    - *longitude* - extra field for uploading latitude value
 
-# Header
+### Header
 
 The header data that needs to be sent includes both an Organisation ID and Organisation API Key.  
 Example:  
@@ -59,7 +61,8 @@ ORGANIZATION-API-KEY = "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"
 }
 ```
 
-# JSON
+
+### JSON
 
 The data we post to Datacooee is a JSON string this is consistent no matter what language you are using.   
 
@@ -98,12 +101,6 @@ LATITUDE_VALUE = 40.730610
 LONGITUDE_VALUE = -73.935242  
 INPUT_ID = "senxxxxxxxxxx" 
 
-# Endpoint
-
-This endpoint is to post data.
-
-### HTTP Post
-
 Upload data into the Datacooee platform.
 
 `POST http://cloud.mydata.management`
@@ -133,7 +130,7 @@ latitude | false | Request Body | String
 value | true | Request Body | String
 sensor | true | Request Body | String
 
-# Examples
+### Examples
 
 Here's are some example snippets to get to started.  
 Examples use mocked data below.  
@@ -337,3 +334,337 @@ if ($err) {
     }
 }
 ```
+
+# Fetch data
+
+Here you can find how you can get data from Datacooee platform.
+
+### Header
+
+The header data that needs to be sent includes both an Organisation ID and Organisation API Key.  
+Example:  
+ORGANIZATION_ID = "ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng="  
+ORGANIZATION-API-KEY = "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"  
+
+```json
+{
+  "Content-Type": "application/vnd.api+json",
+  "ORGANIZATION-ID": "{{ ORGANIZATION_ID}}",
+  "ORGANIZATION-API-KEY": "{{ ORGANIZATION-API-KEY }}"
+}
+```
+
+### Requests
+
+`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_input`
+
+Allows you get data from input
+
+`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_inputs`
+
+Allows you get data from inputs
+
+`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_asset`
+
+Allows you get data from inputs which related to asset
+
+`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_assets`
+
+Allows you get data from inputs which related to assets
+
+### Parameters
+
+**id** - id of input or asset  
+    
+Example: 1
+  
+**timeperiod-start** - get data for time period from  
+  
+Example: "2020-11-02 14:24:38"
+  
+**timeperiod-finish** - get data for time period to 
+  
+Example: "2020-11-03 15:24:38"
+   
+**timeperiod-last** - get data for last time 
+  
+Example: "1_day", "2_days", "1_hour", "2_hours"
+  
+**aggregation_func** - calculate value: min, max, avg 
+  
+Example: "min" | "max" | "avg"  
+   
+**limit - set limit** for data records
+  
+Example: 100  
+Default: 1000
+      
+**page - set number** of page for downloading  
+  
+Example: 1
+  
+**is_add_lat_long** - add latitude and longitude fields to records  
+  
+Example: true | false  
+    
+**is_add_x_axis_data** - add x_axis_data field to records  
+  
+Example: true | false  
+    
+**is_add_metadata** - add metadata field to records  
+  
+Example: true | false  
+    
+**order_by** - set column for order  
+  
+Example: "date" | "value" 
+  
+**sort_by** - set sort direction  
+  
+Example: "asc" | "desc"  
+  
+**is_get_last_value** - get only last value  
+  
+Example: true | false  
+    
+**last_values_count** - get multiple values from end  
+  
+Example: 10  
+  
+**is_get_first_value** - get only first value  
+  
+Example: true | false  
+    
+**first_values_count** - get multiple values from start  
+  
+Example: 10  
+  
+**ids** - ids of inputs or assets  
+  
+Examples: "43,78,197"  
+  
+**inputs_ids** - ids of inputs
+
+Parameter | Type     | Available for                        |
+--------- | ---------| -------------------------------------|
+id        | Number   | get_data_by_input, get_data_by_asset|
+timeperiod-start        | String   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+timeperiod-finish       | String   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+timeperiod-last      | String   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+aggregation_func      | String   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+limit       | Number   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+page       | Number   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+is_add_lat_long       | Boolean   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+is_add_x_axis_data       | Boolean   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+is_add_metadata       | Boolean   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+order_by      | String   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+sort_by     | String   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+is_get_last_value      | Boolean   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+last_values_count       | Number   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+is_get_first_value      | Boolean   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+first_values_count       | Number   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
+ids      | String   | get_data_by_inputs, get_data_by_assets |
+inputs_ids      | String   | get_data_by_asset, get_data_by_assets | 
+  
+  
+### Responses
+  
+Data from input  
+  
+`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_input&id=67`  
+  
+Parameter | http code | Content
+--------- | ----------- | --------
+ok | 200 | JSON  
+  
+```json
+{
+  input: {
+    id: "id",
+    name: "name",
+    measure_unit: "kg"
+  },
+  inputdata: [
+    {
+      timestamp: "timestamp",
+      value: "value",
+      latitude:"latitude",
+      longitude: "longitude",
+      metadata: "metadata",
+      x_axis_value: "x_axis_value"
+
+    }, ...
+  ],
+  info: {
+    timeperiod: {
+      start:"start",
+      finish: "finish",
+      lasts: "lasts"
+    },
+    records: {
+      page: 1,
+      limit: 100,
+      records_loaded: 100,
+      all_records: 990
+    },
+    aggregate_func:"none| min| max|avg"
+
+  }
+
+}
+```
+  
+
+  
+Data from inputs  
+  
+`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_inputs`  
+  
+Parameter | http code | Content
+--------- | ----------- | --------
+ok | 200 | JSON  
+  
+```json
+[{
+  input: {
+    id: "id",
+    name: "name",
+    measure_unit: "kg"
+  },
+  inputdata: [
+    {
+      timestamp: "timestamp",
+      value: "value",
+      latitude:"latitude",
+      longitude: "longitude",
+      metadata: "metadata",
+      x_axis_value: "x_axis_value"
+
+    }, ...
+  ],
+  info: {
+    timeperiod: {
+      start:"start",
+      finish: "finish",
+      lasts: "lasts"
+    },
+    records: {
+      page: 1,
+      limit: 100,
+      records_loaded: 100,
+      all_records: 990
+    },
+    aggregate_func:"none| min| max|avg"
+
+  }
+
+}, {...}, {...}, ...]
+```
+  
+Data from inputs which related to asset  
+  
+`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_asset`  
+  
+Parameter | http code | Content
+--------- | ----------- | --------
+ok | 200 | JSON  
+  
+```json
+{ 
+  id: "id",
+  name: "name",
+  inputs:[{
+    input: {
+      id: "id",
+      name: "name",
+      measure_unit: "kg"
+    },
+    inputdata: [
+      {
+        timestamp: "timestamp",
+        value: "value",
+        latitude:"latitude",
+        longitude: "longitude",
+        metadata: "metadata",
+        x_axis_value: "x_axis_value"
+  
+      }, ...
+    ],
+    info: {
+      timeperiod: {
+        start:"start",
+        finish: "finish",
+        lasts: "lasts"
+      },
+      records: {
+        page: 1,
+        limit: 100,
+        records_loaded: 100,
+        all_records: 990
+      },
+      aggregate_func:"none| min| max|avg"
+  
+    }
+  
+  }, {...}, {...}, ...]
+}
+
+```  
+  
+  
+Data from inputs which related to assets  
+  
+`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_assets`  
+  
+Parameter | http code | Content
+--------- | ----------- | --------
+ok | 200 | JSON  
+  
+```json
+[{
+  id: "id",
+  name: "name",
+  inputs:[{
+    input: {
+      id: "id",
+      name: "name",
+      measure_unit: "kg"
+    },
+    inputdata: [
+      {
+        timestamp: "timestamp",
+        value: "value",
+        latitude:"latitude",
+        longitude: "longitude",
+        metadata: "metadata",
+        x_axis_value: "x_axis_value"
+
+      }, ...
+    ],
+    info: {
+      timeperiod: {
+        start:"start",
+        finish: "finish",
+        lasts: "lasts"
+      },
+      records: {
+        page: 1,
+        limit: 100,
+        records_loaded: 100,
+        all_records: 990
+      },
+      aggregate_func:"none| min| max|avg"
+
+    }
+
+  }, {...}, {...}, ...]
+}, {...}, {...}, ...]
+```  
+  
+### Examples
+
+Here you can see examples with most common usages parameters.
+
+
+
+
