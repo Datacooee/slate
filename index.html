@@ -629,30 +629,128 @@ Example:<br>
 ORGANIZATION_ID = &quot;ZnlvcWXXXXXXXXXXXXXXXXXXXX5ieXVieHgudng=&quot;<br>
 ORGANIZATION-API-KEY = &quot;f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61&quot;  </p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/vnd.api+json"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ORGANIZATION-ID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ ORGANIZATION_ID}}"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ORGANIZATION-API-KEY"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{ ORGANIZATION-API-KEY }}"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='requests'>Requests</h3>
-<p><code>GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_input</code></p>
+<p>Allow you get data from inputs  </p>
 
-<p>Allows you get data from input</p>
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_inputdata_by_inputs</code>   </p>
 
-<p><code>GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_inputs</code></p>
+<p>Available request parameters:   </p>
 
-<p>Allows you get data from inputs</p>
+<p><em>input_ids</em><br>
+<em>timeperiod_start</em><br>
+<em>timeperiod_finish</em><br>
+<em>limit</em><br>
+<em>is_add_lat_long</em><br>
+<em>is_add_x_axis_data</em><br>
+<em>is_add_metadata</em><br>
+<em>order_by</em><br>
+<em>sort_by</em>  </p>
 
-<p><code>GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_asset</code></p>
+<p>Allow you get latest data from inputs  </p>
 
-<p>Allows you get data from inputs which related to asset</p>
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_latest_inputdata_by_inputs</code>  </p>
 
-<p><code>GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_assets</code></p>
+<p>Available request parameters:   </p>
 
-<p>Allows you get data from inputs which related to assets</p>
+<p><em>input_ids</em><br>
+<em>timeperiod_last</em><br>
+<em>limit</em><br>
+<em>is_add_lat_long</em><br>
+<em>is_add_x_axis_data</em><br>
+<em>is_add_metadata</em><br>
+<em>order_by</em><br>
+<em>sort_by</em>  </p>
+
+<p>Allow you get statical information data from inputs  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_inputs</code>  </p>
+
+<p>Available request parameters:   </p>
+
+<p><em>input_ids</em><br>
+<em>timeperiod_start</em><br>
+<em>timeperiod_finish</em><br>
+<em>limit</em><br>
+<em>aggregation_func</em> </p>
+
+<p>Allow you get latest statical information data from inputs</p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_latest_statistics_inputdata_by_inputs</code></p>
+
+<p>Available request parameters:   </p>
+
+<p><em>input_ids</em><br>
+<em>timeperiod_last</em><br>
+<em>limit</em><br>
+<em>aggregation_func</em>  </p>
+
+<p>Allow you get data from inputs which related to assets  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_inputdata_by_asset</code>  </p>
+
+<p>Available request parameters:   </p>
+
+<p><em>asset_id</em><br>
+<em>input_ids</em><br>
+<em>timeperiod_start</em><br>
+<em>timeperiod_finish</em><br>
+<em>limit</em><br>
+<em>is_add_lat_long</em><br>
+<em>is_add_x_axis_data</em><br>
+<em>is_add_metadata</em><br>
+<em>order_by</em><br>
+<em>sort_by</em>  </p>
+
+<p>Allow you get latest data from inputs which related to assets  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_latest_inputdata_by_asset</code>  </p>
+
+<p>Available request parameters:   </p>
+
+<p><em>asset_id</em><br>
+<em>input_ids</em><br>
+<em>timeperiod_last</em><br>
+<em>limit</em><br>
+<em>is_add_lat_long</em><br>
+<em>is_add_x_axis_data</em><br>
+<em>is_add_metadata</em><br>
+<em>order_by</em><br>
+<em>sort_by</em>  </p>
+
+<p>Allow you get statistical data from inputs which related to assets  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_asset</code>  </p>
+
+<p>Available request parameters:   </p>
+
+<p><em>asset_id</em><br>
+<em>input_ids</em><br>
+<em>timeperiod_start</em><br>
+<em>timeperiod_finish</em><br>
+<em>limit</em>  </p>
+
+<p>Allow you get latest statistical data from inputs which related to assets  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_latest_statistics_inputdata_by_asset</code>  </p>
+
+<p>Available request parameters:   </p>
+
+<p><em>asset_id</em><br>
+<em>input_ids</em><br>
+<em>timeperiod_last</em><br>
+<em>limit</em>   </p>
 <h3 id='parameters-2'>Parameters</h3>
-<p><strong>id</strong> - id of input or asset  </p>
+<p><strong>asset_id</strong> - id for asset </p>
 
-<p>Example: 1</p>
+<p>Example: 67  </p>
+
+<p><strong>inputs_ids</strong> - ids for inputs</p>
+
+<p>Examples: senXXXXXXX,senXXXXXY,senXXXXXZ  </p>
 
 <p><strong>timeperiod-start</strong> - get data for time period from  </p>
 
@@ -664,20 +762,16 @@ ORGANIZATION-API-KEY = &quot;f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61&quot;  </p>
 
 <p><strong>timeperiod-last</strong> - get data for last time </p>
 
-<p>Example: &quot;1_day&quot;, &quot;2_days&quot;, &quot;1_hour&quot;, &quot;2_hours&quot;</p>
+<p>Example: &quot;1_day&quot;, &quot;2_days&quot;, &quot;1_hour&quot;, &quot;2_hours&quot;, &quot;1_week&quot;, &quot;2_weeks&quot;</p>
 
 <p><strong>aggregation_func</strong> - calculate value: min, max, avg </p>
 
 <p>Example: &quot;min&quot; | &quot;max&quot; | &quot;avg&quot;  </p>
 
-<p><strong>limit - set limit</strong> for data records</p>
+<p><strong>limit</strong> - set limit for inputdata records from each input</p>
 
 <p>Example: 100<br>
-Default: 1000</p>
-
-<p><strong>page - set number</strong> of page for downloading  </p>
-
-<p>Example: 1</p>
+Default: 1000  </p>
 
 <p><strong>is_add_lat_long</strong> - add latitude and longitude fields to records  </p>
 
@@ -697,184 +791,82 @@ Default: 1000</p>
 
 <p><strong>sort_by</strong> - set sort direction  </p>
 
-<p>Example: &quot;asc&quot; | &quot;desc&quot;  </p>
-
-<p><strong>is_get_last_value</strong> - get only last value  </p>
-
-<p>Example: true | false  </p>
-
-<p><strong>last_values_count</strong> - get multiple values from end  </p>
-
-<p>Example: 10  </p>
-
-<p><strong>is_get_first_value</strong> - get only first value  </p>
-
-<p>Example: true | false  </p>
-
-<p><strong>first_values_count</strong> - get multiple values from start  </p>
-
-<p>Example: 10  </p>
-
-<p><strong>ids</strong> - ids of inputs or assets  </p>
-
-<p>Examples: &quot;43,78,197&quot;  </p>
-
-<p><strong>inputs_ids</strong> - ids of inputs</p>
+<p>Example: &quot;asc&quot; | &quot;desc&quot;   </p>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Available for</th>
+<th>Possible values</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
-<td>Number</td>
-<td>get_data_by_input, get_data_by_asset</td>
+<td>asset_id</td>
+<td>Integer</td>
+<td>positive integer value</td>
 </tr>
 <tr>
 <td>timeperiod-start</td>
 <td>String</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
+<td>Date string in format &quot;YYYY-MM-DD hh:mm:ss&quot;. Use time by UTC.</td>
 </tr>
 <tr>
 <td>timeperiod-finish</td>
 <td>String</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
+<td>Date string in format &quot;YYYY-MM-DD hh:mm:ss&quot;. Use time by UTC.</td>
 </tr>
 <tr>
 <td>timeperiod-last</td>
 <td>String</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
+<td>support &#39;days&#39;, &#39;weeks&#39;, &#39;hours&#39;. For ex. &quot;1_day&quot;, &quot;65_days&quot; etc.</td>
 </tr>
 <tr>
 <td>aggregation_func</td>
 <td>String</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
+<td>&quot;min&quot;, &quot;max&quot;, &quot;avg&quot;. You can use multiple values like &quot;min,max,avg&quot;.</td>
 </tr>
 <tr>
 <td>limit</td>
-<td>Number</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
-</tr>
-<tr>
-<td>page</td>
-<td>Number</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
+<td>Integer</td>
+<td>positive integer value.</td>
 </tr>
 <tr>
 <td>is_add_lat_long</td>
 <td>Boolean</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
+<td>true or false</td>
 </tr>
 <tr>
 <td>is_add_x_axis_data</td>
 <td>Boolean</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
+<td>true or false</td>
 </tr>
 <tr>
 <td>is_add_metadata</td>
 <td>Boolean</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
+<td>true or false</td>
 </tr>
 <tr>
 <td>order_by</td>
 <td>String</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
+<td>&quot;value&quot; or &quot;timestamp&quot;</td>
 </tr>
 <tr>
 <td>sort_by</td>
 <td>String</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
-</tr>
-<tr>
-<td>is_get_last_value</td>
-<td>Boolean</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
-</tr>
-<tr>
-<td>last_values_count</td>
-<td>Number</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
-</tr>
-<tr>
-<td>is_get_first_value</td>
-<td>Boolean</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
-</tr>
-<tr>
-<td>first_values_count</td>
-<td>Number</td>
-<td>get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets</td>
-</tr>
-<tr>
-<td>ids</td>
-<td>String</td>
-<td>get_data_by_inputs, get_data_by_assets</td>
+<td>&quot;asc&quot; or &quot;desc&quot;</td>
 </tr>
 <tr>
 <td>inputs_ids</td>
 <td>String</td>
-<td>get_data_by_asset, get_data_by_assets</td>
+<td>&quot;senxxxx,senxxxy, senxxxz&quot; etc.</td>
 </tr>
 </tbody></table>
 <h3 id='responses-2'>Responses</h3>
-<p>Data from input  </p>
+<p>Data from inputs and latest data from inputs</p>
 
-<p><code>GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_input&amp;id=67</code>  </p>
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_inputdata_by_inputs</code>  </p>
 
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>http code</th>
-<th>Content</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ok</td>
-<td>200</td>
-<td>JSON</td>
-</tr>
-</tbody></table>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="err">input</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
-    </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
-    </span><span class="err">measure_unit</span><span class="p">:</span><span class="w"> </span><span class="s2">"kg"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="err">inputdata</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="err">timestamp</span><span class="p">:</span><span class="w"> </span><span class="s2">"timestamp"</span><span class="p">,</span><span class="w">
-      </span><span class="err">value</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="p">,</span><span class="w">
-      </span><span class="err">latitude</span><span class="p">:</span><span class="s2">"latitude"</span><span class="p">,</span><span class="w">
-      </span><span class="err">longitude</span><span class="p">:</span><span class="w"> </span><span class="s2">"longitude"</span><span class="p">,</span><span class="w">
-      </span><span class="err">metadata</span><span class="p">:</span><span class="w"> </span><span class="s2">"metadata"</span><span class="p">,</span><span class="w">
-      </span><span class="err">x_axis_value</span><span class="p">:</span><span class="w"> </span><span class="s2">"x_axis_value"</span><span class="w">
-
-    </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="err">info</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="err">timeperiod</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="err">start</span><span class="p">:</span><span class="s2">"start"</span><span class="p">,</span><span class="w">
-      </span><span class="err">finish</span><span class="p">:</span><span class="w"> </span><span class="s2">"finish"</span><span class="p">,</span><span class="w">
-      </span><span class="err">lasts</span><span class="p">:</span><span class="w"> </span><span class="s2">"lasts"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">records</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="err">page</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="err">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="err">records_loaded</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="err">all_records</span><span class="p">:</span><span class="w"> </span><span class="mi">990</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">aggregate_func</span><span class="p">:</span><span class="s2">"none| min| max|avg"</span><span class="w">
-
-  </span><span class="p">}</span><span class="w">
-
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Data from inputs  </p>
-
-<p><code>GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_inputs</code>  </p>
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_latest_inputdata_by_inputs</code>   </p>
 
 <table><thead>
 <tr>
@@ -891,9 +883,9 @@ Default: 1000</p>
 </tbody></table>
 <pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
   </span><span class="err">input</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
-    </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
-    </span><span class="err">measure_unit</span><span class="p">:</span><span class="w"> </span><span class="s2">"kg"</span><span class="w">
+    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_id"</span><span class="p">,</span><span class="w">
+    </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_name"</span><span class="p">,</span><span class="w">
+    </span><span class="err">measure_unit</span><span class="p">:</span><span class="w"> </span><span class="s2">"measure_unit"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="err">inputdata</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -905,28 +897,15 @@ Default: 1000</p>
       </span><span class="err">x_axis_value</span><span class="p">:</span><span class="w"> </span><span class="s2">"x_axis_value"</span><span class="w">
 
     </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="err">info</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="err">timeperiod</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="err">start</span><span class="p">:</span><span class="s2">"start"</span><span class="p">,</span><span class="w">
-      </span><span class="err">finish</span><span class="p">:</span><span class="w"> </span><span class="s2">"finish"</span><span class="p">,</span><span class="w">
-      </span><span class="err">lasts</span><span class="p">:</span><span class="w"> </span><span class="s2">"lasts"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">records</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="err">page</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="err">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="err">records_loaded</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="err">all_records</span><span class="p">:</span><span class="w"> </span><span class="mi">990</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">aggregate_func</span><span class="p">:</span><span class="s2">"none| min| max|avg"</span><span class="w">
-
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 
 </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Data from inputs which related to asset  </p>
 
-<p><code>GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_asset</code>  </p>
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_inputdata_by_asset</code>  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_latest_inputdata_by_asset</code>   </p>
 
 <table><thead>
 <tr>
@@ -942,13 +921,13 @@ Default: 1000</p>
 </tr>
 </tbody></table>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
-  </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
-  </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+  </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"asset_id"</span><span class="p">,</span><span class="w">
+  </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"asset_name"</span><span class="p">,</span><span class="w">
   </span><span class="err">inputs</span><span class="p">:[{</span><span class="w">
     </span><span class="err">input</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
-      </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
-      </span><span class="err">measure_unit</span><span class="p">:</span><span class="w"> </span><span class="s2">"kg"</span><span class="w">
+      </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_id"</span><span class="p">,</span><span class="w">
+      </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_name"</span><span class="p">,</span><span class="w">
+      </span><span class="err">measure_unit</span><span class="p">:</span><span class="w"> </span><span class="s2">"measure_unit"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="err">inputdata</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -960,30 +939,17 @@ Default: 1000</p>
         </span><span class="err">x_axis_value</span><span class="p">:</span><span class="w"> </span><span class="s2">"x_axis_value"</span><span class="w">
 
       </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="err">info</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="err">timeperiod</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="err">start</span><span class="p">:</span><span class="s2">"start"</span><span class="p">,</span><span class="w">
-        </span><span class="err">finish</span><span class="p">:</span><span class="w"> </span><span class="s2">"finish"</span><span class="p">,</span><span class="w">
-        </span><span class="err">lasts</span><span class="p">:</span><span class="w"> </span><span class="s2">"lasts"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="err">records</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="err">page</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="err">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="err">records_loaded</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="err">all_records</span><span class="p">:</span><span class="w"> </span><span class="mi">990</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="err">aggregate_func</span><span class="p">:</span><span class="s2">"none| min| max|avg"</span><span class="w">
-
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 
   </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>Data from inputs which related to assets  </p>
+<p>Statistic Data from inputs and latest statistic data from inputs</p>
 
-<p><code>GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_assets</code>  </p>
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_inputs</code>  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_latest_statistics_inputdata_by_inputs</code>  </p>
 
 <table><thead>
 <tr>
@@ -999,45 +965,100 @@ Default: 1000</p>
 </tr>
 </tbody></table>
 <pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
-  </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
-  </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+  </span><span class="err">input</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_id"</span><span class="p">,</span><span class="w">
+    </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_name"</span><span class="p">,</span><span class="w">
+    </span><span class="err">measure_unit</span><span class="p">:</span><span class="w"> </span><span class="s2">"measure_unit"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">inputdata</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="err">min</span><span class="p">:</span><span class="w"> </span><span class="s2">"min"</span><span class="p">,</span><span class="w">
+      </span><span class="err">max</span><span class="p">:</span><span class="w"> </span><span class="s2">"max"</span><span class="p">,</span><span class="w">
+      </span><span class="err">avg</span><span class="p">:</span><span class="s2">"avg"</span><span class="w">
+
+    </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Statistic data from inputs which related to asset and latest statistic data from inputs which related to asset</p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_asset</code>  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_latest_statistics_inputdata_by_asset</code>   </p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>http code</th>
+<th>Content</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ok</td>
+<td>200</td>
+<td>JSON</td>
+</tr>
+</tbody></table>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
+  </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"asset_id"</span><span class="p">,</span><span class="w">
+  </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"asset_name"</span><span class="p">,</span><span class="w">
   </span><span class="err">inputs</span><span class="p">:[{</span><span class="w">
     </span><span class="err">input</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
-      </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
-      </span><span class="err">measure_unit</span><span class="p">:</span><span class="w"> </span><span class="s2">"kg"</span><span class="w">
+      </span><span class="err">id</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_id"</span><span class="p">,</span><span class="w">
+      </span><span class="err">name</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_name"</span><span class="p">,</span><span class="w">
+      </span><span class="err">measure_unit</span><span class="p">:</span><span class="w"> </span><span class="s2">"measure_unit"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="err">inputdata</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="err">timestamp</span><span class="p">:</span><span class="w"> </span><span class="s2">"timestamp"</span><span class="p">,</span><span class="w">
-        </span><span class="err">value</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="p">,</span><span class="w">
-        </span><span class="err">latitude</span><span class="p">:</span><span class="s2">"latitude"</span><span class="p">,</span><span class="w">
-        </span><span class="err">longitude</span><span class="p">:</span><span class="w"> </span><span class="s2">"longitude"</span><span class="p">,</span><span class="w">
-        </span><span class="err">metadata</span><span class="p">:</span><span class="w"> </span><span class="s2">"metadata"</span><span class="p">,</span><span class="w">
-        </span><span class="err">x_axis_value</span><span class="p">:</span><span class="w"> </span><span class="s2">"x_axis_value"</span><span class="w">
+        </span><span class="err">min</span><span class="p">:</span><span class="w"> </span><span class="s2">"min"</span><span class="p">,</span><span class="w">
+        </span><span class="err">max</span><span class="p">:</span><span class="w"> </span><span class="s2">"max"</span><span class="p">,</span><span class="w">
+        </span><span class="err">avg</span><span class="p">:</span><span class="w"> </span><span class="s2">"avg"</span><span class="w">
 
       </span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="err">info</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="err">timeperiod</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="err">start</span><span class="p">:</span><span class="s2">"start"</span><span class="p">,</span><span class="w">
-        </span><span class="err">finish</span><span class="p">:</span><span class="w"> </span><span class="s2">"finish"</span><span class="p">,</span><span class="w">
-        </span><span class="err">lasts</span><span class="p">:</span><span class="w"> </span><span class="s2">"lasts"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="err">records</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="err">page</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="err">limit</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="err">records_loaded</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="err">all_records</span><span class="p">:</span><span class="w"> </span><span class="mi">990</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="err">aggregate_func</span><span class="p">:</span><span class="s2">"none| min| max|avg"</span><span class="w">
-
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 
   </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="p">]</span><span class="w">
-</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w"> </span><span class="err">...</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 </span></code></pre><h3 id='examples-2'>Examples</h3>
-<p>Here you can see examples with most common usages parameters.</p>
+<p>Here you can see examples with most common usage requests.</p>
+
+<p>Receive inputdata from several inputs from &quot;2020-10-03 15:31:55&quot; to &quot;2020-11-03 15:31:55&quot; and sort data by newest at first.  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_inputdata_by_inputs/?inputs_ids=&quot;senXXXX,senXXXY,senXXXZ&quot;&amp;timeperiod_start=&quot;2020-10-03 15:31:55&quot;&amp;timeperiod_finish=&quot;2020-11-03 15:31:55&quot;&amp;order_by=&quot;timestamp&quot;&amp;sort_by=&quot;desc&quot;</code></p>
+
+<p>Receive inputdata from several inputs for last 5 days and sort data by newest at first.  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_latest_inputdata_by_inputs/?inputs_ids=&quot;senXXXX,senXXXY,senXXXZ&quot;&amp;timeperiod_last=&quot;5_days&quot;&amp;order_by=&quot;timestamp&quot;&amp;sort_by=&quot;desc&quot;</code>  </p>
+
+<p>Receive min max and avg values for inputdata from several inputs from &quot;2020-10-03 15:31:55&quot; to &quot;2020-11-03 15:31:55&quot;.  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_inputs/?inputs_ids=&quot;senXXXX,senXXXY,senXXXZ&quot;&amp;timeperiod_start=&quot;2020-10-03 15:31:55&quot;&amp;timeperiod_finish=&quot;2020-11-03 15:31:55&quot;&amp;aggregation_func=&quot;min,max,avg&quot;</code>  </p>
+
+<p>Receive min max and avg values for inputdata from several inputs for last 5 days.    </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_inputs/?inputs_ids=&quot;senXXXX,senXXXY,senXXXZ&quot;&amp;timeperiod_last=&quot;5_days&quot;&amp;aggregation_func=&quot;min,max,avg&quot;</code>  </p>
+
+<p>Receive inputdata from all inputs which related to asset from &quot;2020-10-03 15:31:55&quot; to &quot;2020-11-03 15:31:55&quot; and sort data by newest at first.<br>
+If you want to get inputdata only for several inputs from asset, you should add &#39;inputs_ids&#39; parameter to request.  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_inputdata_by_asset/?asset_id=&quot;67&quot;&amp;timeperiod_start=&quot;2020-10-03 15:31:55&quot;&amp;timeperiod_finish=&quot;2020-11-03 15:31:55&quot;&amp;order_by=&quot;timestamp&quot;&amp;sort_by=&quot;desc&quot;</code>  </p>
+
+<p>Receive inputdata from all inputs which related to asset for last 5 days and sort data by newest at first.<br>
+If you want to get inputdata only for several inputs from asset, you should add &#39;inputs_ids&#39; parameter to request.    </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_latest_inputdata_by_asset/?asset_id=&quot;67&quot;&amp;timeperiod_last=&quot;5_days&quot;&amp;order_by=&quot;timestamp&quot;&amp;sort_by=&quot;desc&quot;</code>  </p>
+
+<p>Receive min max and avg values for inputdata from all inputs which related to asset from &quot;2020-10-03 15:31:55&quot; to &quot;2020-11-03 15:31:55&quot;.<br>
+If you want to get inputdata only for several inputs from asset, you should add &#39;inputs_ids&#39; parameter to request. </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_asset/?asset_id=&quot;senXXXX,senXXXY,senXXXZ&quot;&amp;timeperiod_start=&quot;2020-10-03 15:31:55&quot;&amp;timeperiod_finish=&quot;2020-11-03 15:31:55&quot;&amp;aggregation_func=&quot;min,max,avg&quot;</code> </p>
+
+<p>Receive min max and avg values for inputdata from all inputs which related to asset for last 5 days.<br>
+If you want to get inputdata only for several inputs from asset, you should add &#39;inputs_ids&#39; parameter to request.  </p>
+
+<p><code>GET http://cloud.mydata.management/api/external/v1/get_latest_statistics_inputdata_by_asset/?asset_id=&quot;67&quot;&amp;timeperiod_last=&quot;5_days&quot;&amp;aggregation_func=&quot;min,max,avg&quot;</code> </p>
 
       </div>
       <div class="dark-box">
