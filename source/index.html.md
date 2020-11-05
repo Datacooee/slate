@@ -348,7 +348,7 @@ ORGANIZATION-API-KEY = "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"
 
 ```json
 {
-  "Content-Type": "application/vnd.api+json",
+  "Content-Type": "application/json",
   "ORGANIZATION-ID": "{{ ORGANIZATION_ID}}",
   "ORGANIZATION-API-KEY": "{{ ORGANIZATION-API-KEY }}"
 }
@@ -356,27 +356,125 @@ ORGANIZATION-API-KEY = "f13d34bxxxxxxxxxxxxxxxxxxxa5da135d61"
 
 ### Requests
 
-`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_input`
-
-Allows you get data from input
-
-`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_inputs`
-
-Allows you get data from inputs
-
-`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_asset`
-
-Allows you get data from inputs which related to asset
-
-`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_assets`
-
-Allows you get data from inputs which related to assets
+Allow you get data from inputs  
+  
+`GET http://cloud.mydata.management/api/external/v1/get_inputdata_by_inputs`   
+  
+Available request parameters:   
+  
+*input_ids*  
+*timeperiod_start*  
+*timeperiod_finish*  
+*limit*  
+*is_add_lat_long*  
+*is_add_x_axis_data*    
+*is_add_metadata*  
+*order_by*  
+*sort_by*  
+  
+Allow you get latest data from inputs  
+  
+`GET http://cloud.mydata.management/api/external/v1/get_latest_inputdata_by_inputs`  
+  
+Available request parameters:   
+  
+*input_ids*  
+*timeperiod_last*   
+*limit*  
+*is_add_lat_long*  
+*is_add_x_axis_data*    
+*is_add_metadata*  
+*order_by*  
+*sort_by*  
+  
+Allow you get statical information data from inputs  
+  
+`GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_inputs`  
+  
+Available request parameters:   
+  
+*input_ids*  
+*timeperiod_start*  
+*timeperiod_finish*  
+*limit*  
+*aggregation_func* 
+  
+Allow you get latest statical information data from inputs
+  
+`GET http://cloud.mydata.management/api/external/v1/get_latest_statistics_inputdata_by_inputs`
+  
+Available request parameters:   
+  
+*input_ids*  
+*timeperiod_last*  
+*limit*  
+*aggregation_func*  
+  
+Allow you get data from inputs which related to assets  
+  
+`GET http://cloud.mydata.management/api/external/v1/get_inputdata_by_asset`  
+  
+Available request parameters:   
+  
+*asset_id*    
+*input_ids*  
+*timeperiod_start*  
+*timeperiod_finish*  
+*limit*  
+*is_add_lat_long*  
+*is_add_x_axis_data*    
+*is_add_metadata*  
+*order_by*  
+*sort_by*  
+  
+Allow you get latest data from inputs which related to assets  
+  
+`GET http://cloud.mydata.management/api/external/v1/get_latest_inputdata_by_asset`  
+  
+Available request parameters:   
+  
+*asset_id*  
+*input_ids*  
+*timeperiod_last*  
+*limit*  
+*is_add_lat_long*  
+*is_add_x_axis_data*    
+*is_add_metadata*  
+*order_by*  
+*sort_by*  
+  
+Allow you get statistical data from inputs which related to assets  
+  
+`GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_asset`  
+  
+Available request parameters:   
+  
+*asset_id*    
+*input_ids*  
+*timeperiod_start*  
+*timeperiod_finish*  
+*limit*  
+  
+Allow you get latest statistical data from inputs which related to assets  
+  
+`GET http://cloud.mydata.management/api/external/v1/get_latest_statistics_inputdata_by_asset`  
+  
+Available request parameters:   
+  
+*asset_id*    
+*input_ids*  
+*timeperiod_last*   
+*limit*   
 
 ### Parameters
-
-**id** - id of input or asset  
-    
-Example: 1
+ 
+**asset_id** - id for asset 
+  
+Example: 67  
+  
+**inputs_ids** - ids for inputs
+  
+Examples: senXXXXXXX,senXXXXXY,senXXXXXZ  
   
 **timeperiod-start** - get data for time period from  
   
@@ -388,20 +486,16 @@ Example: "2020-11-03 15:24:38"
    
 **timeperiod-last** - get data for last time 
   
-Example: "1_day", "2_days", "1_hour", "2_hours"
+Example: "1_day", "2_days", "1_hour", "2_hours", "1_week", "2_weeks"
   
 **aggregation_func** - calculate value: min, max, avg 
   
 Example: "min" | "max" | "avg"  
    
-**limit - set limit** for data records
+**limit** - set limit for inputdata records from each input
   
 Example: 100  
-Default: 1000
-      
-**page - set number** of page for downloading  
-  
-Example: 1
+Default: 1000  
   
 **is_add_lat_long** - add latitude and longitude fields to records  
   
@@ -421,104 +515,31 @@ Example: "date" | "value"
   
 **sort_by** - set sort direction  
   
-Example: "asc" | "desc"  
-  
-**is_get_last_value** - get only last value  
-  
-Example: true | false  
-    
-**last_values_count** - get multiple values from end  
-  
-Example: 10  
-  
-**is_get_first_value** - get only first value  
-  
-Example: true | false  
-    
-**first_values_count** - get multiple values from start  
-  
-Example: 10  
-  
-**ids** - ids of inputs or assets  
-  
-Examples: "43,78,197"  
-  
-**inputs_ids** - ids of inputs
+Example: "asc" | "desc"   
 
-Parameter | Type     | Available for                        |
---------- | ---------| -------------------------------------|
-id        | Number   | get_data_by_input, get_data_by_asset|
-timeperiod-start        | String   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-timeperiod-finish       | String   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-timeperiod-last      | String   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-aggregation_func      | String   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-limit       | Number   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-page       | Number   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-is_add_lat_long       | Boolean   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-is_add_x_axis_data       | Boolean   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-is_add_metadata       | Boolean   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-order_by      | String   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-sort_by     | String   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-is_get_last_value      | Boolean   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-last_values_count       | Number   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-is_get_first_value      | Boolean   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-first_values_count       | Number   | get_data_by_input, get_data_by_inputs, get_data_by_asset, get_data_by_assets |
-ids      | String   | get_data_by_inputs, get_data_by_assets |
-inputs_ids      | String   | get_data_by_asset, get_data_by_assets | 
+Parameter | Type     | Possible values |
+--------- | ---------| ----------------|
+asset_id        | Integer   | positive integer value | 
+timeperiod-start        | String   | Date string in format "YYYY-MM-DD hh:mm:ss". Use time by UTC. | 
+timeperiod-finish       | String   | Date string in format "YYYY-MM-DD hh:mm:ss". Use time by UTC. |
+timeperiod-last      | String   | support 'days', 'weeks', 'hours'. For ex. "1_day", "65_days" etc. |
+aggregation_func      | String   | "min", "max", "avg". You can use multiple values like "min,max,avg". |
+limit       | Integer   | positive integer value. |
+is_add_lat_long       | Boolean   | true or false
+is_add_x_axis_data       | Boolean   | true or false
+is_add_metadata       | Boolean   | true or false
+order_by      | String   | "value" or "timestamp"
+sort_by     | String   | "asc" or "desc"
+inputs_ids      | String   | "senxxxx,senxxxy, senxxxz" etc.
   
   
 ### Responses
   
-Data from input  
+Data from inputs and latest data from inputs
   
-`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_input&id=67`  
+`GET http://cloud.mydata.management/api/external/v1/get_inputdata_by_inputs`  
   
-Parameter | http code | Content
---------- | ----------- | --------
-ok | 200 | JSON  
-  
-```json
-{
-  input: {
-    id: "id",
-    name: "name",
-    measure_unit: "kg"
-  },
-  inputdata: [
-    {
-      timestamp: "timestamp",
-      value: "value",
-      latitude:"latitude",
-      longitude: "longitude",
-      metadata: "metadata",
-      x_axis_value: "x_axis_value"
-
-    }, ...
-  ],
-  info: {
-    timeperiod: {
-      start:"start",
-      finish: "finish",
-      lasts: "lasts"
-    },
-    records: {
-      page: 1,
-      limit: 100,
-      records_loaded: 100,
-      all_records: 990
-    },
-    aggregate_func:"none| min| max|avg"
-
-  }
-
-}
-```
-  
-
-  
-Data from inputs  
-  
-`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_inputs`  
+`GET http://cloud.mydata.management/api/external/v1/get_latest_inputdata_by_inputs`   
   
 Parameter | http code | Content
 --------- | ----------- | --------
@@ -527,9 +548,9 @@ ok | 200 | JSON
 ```json
 [{
   input: {
-    id: "id",
-    name: "name",
-    measure_unit: "kg"
+    id: "input_id",
+    name: "input_name",
+    measure_unit: "measure_unit"
   },
   inputdata: [
     {
@@ -541,29 +562,16 @@ ok | 200 | JSON
       x_axis_value: "x_axis_value"
 
     }, ...
-  ],
-  info: {
-    timeperiod: {
-      start:"start",
-      finish: "finish",
-      lasts: "lasts"
-    },
-    records: {
-      page: 1,
-      limit: 100,
-      records_loaded: 100,
-      all_records: 990
-    },
-    aggregate_func:"none| min| max|avg"
-
-  }
+  ]
 
 }, {...}, {...}, ...]
 ```
   
 Data from inputs which related to asset  
   
-`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_asset`  
+`GET http://cloud.mydata.management/api/external/v1/get_inputdata_by_asset`  
+  
+`GET http://cloud.mydata.management/api/external/v1/get_latest_inputdata_by_asset`   
   
 Parameter | http code | Content
 --------- | ----------- | --------
@@ -571,13 +579,13 @@ ok | 200 | JSON
   
 ```json
 { 
-  id: "id",
-  name: "name",
+  id: "asset_id",
+  name: "asset_name",
   inputs:[{
     input: {
-      id: "id",
-      name: "name",
-      measure_unit: "kg"
+      id: "input_id",
+      name: "input_name",
+      measure_unit: "measure_unit"
     },
     inputdata: [
       {
@@ -589,32 +597,18 @@ ok | 200 | JSON
         x_axis_value: "x_axis_value"
   
       }, ...
-    ],
-    info: {
-      timeperiod: {
-        start:"start",
-        finish: "finish",
-        lasts: "lasts"
-      },
-      records: {
-        page: 1,
-        limit: 100,
-        records_loaded: 100,
-        all_records: 990
-      },
-      aggregate_func:"none| min| max|avg"
-  
-    }
+    ]
   
   }, {...}, {...}, ...]
 }
 
 ```  
   
+Statistic Data from inputs and latest statistic data from inputs
   
-Data from inputs which related to assets  
+`GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_inputs`  
   
-`GET http://cloud.mydata.management/api/external/v1/inputdata/get_data_by_assets`  
+`GET http://cloud.mydata.management/api/external/v1/get_latest_statistics_inputdata_by_inputs`  
   
 Parameter | http code | Content
 --------- | ----------- | --------
@@ -622,49 +616,96 @@ ok | 200 | JSON
   
 ```json
 [{
-  id: "id",
-  name: "name",
+  input: {
+    id: "input_id",
+    name: "input_name",
+    measure_unit: "measure_unit"
+  },
+  inputdata: [
+    {
+      min: "min",
+      max: "max",
+      avg:"avg"
+
+    }, ...
+  ]
+
+}, {...}, {...}, ...]
+```
+  
+Statistic data from inputs which related to asset and latest statistic data from inputs which related to asset
+  
+`GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_asset`  
+    
+`GET http://cloud.mydata.management/api/external/v1/get_latest_statistics_inputdata_by_asset`   
+  
+Parameter | http code | Content
+--------- | ----------- | --------
+ok | 200 | JSON  
+  
+```json
+{ 
+  id: "asset_id",
+  name: "asset_name",
   inputs:[{
     input: {
-      id: "id",
-      name: "name",
-      measure_unit: "kg"
+      id: "input_id",
+      name: "input_name",
+      measure_unit: "measure_unit"
     },
     inputdata: [
       {
-        timestamp: "timestamp",
-        value: "value",
-        latitude:"latitude",
-        longitude: "longitude",
-        metadata: "metadata",
-        x_axis_value: "x_axis_value"
-
+        min: "min",
+        max: "max",
+        avg: "avg"
+  
       }, ...
-    ],
-    info: {
-      timeperiod: {
-        start:"start",
-        finish: "finish",
-        lasts: "lasts"
-      },
-      records: {
-        page: 1,
-        limit: 100,
-        records_loaded: 100,
-        all_records: 990
-      },
-      aggregate_func:"none| min| max|avg"
-
-    }
-
+    ]
+  
   }, {...}, {...}, ...]
-}, {...}, {...}, ...]
-```  
+}
+
+``` 
   
 ### Examples
 
-Here you can see examples with most common usages parameters.
-
-
+Here you can see examples with most common usage requests.
+  
+Receive inputdata from several inputs from "2020-10-03 15:31:55" to "2020-11-03 15:31:55" and sort data by newest at first.  
+  
+`GET http://cloud.mydata.management/api/external/v1/get_inputdata_by_inputs/?inputs_ids="senXXXX,senXXXY,senXXXZ"&timeperiod_start="2020-10-03 15:31:55"&timeperiod_finish="2020-11-03 15:31:55"&order_by="timestamp"&sort_by="desc"`
+  
+Receive inputdata from several inputs for last 5 days and sort data by newest at first.  
+  
+`GET http://cloud.mydata.management/api/external/v1/get_latest_inputdata_by_inputs/?inputs_ids="senXXXX,senXXXY,senXXXZ"&timeperiod_last="5_days"&order_by="timestamp"&sort_by="desc"`  
+  
+Receive min max and avg values for inputdata from several inputs from "2020-10-03 15:31:55" to "2020-11-03 15:31:55".  
+  
+`GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_inputs/?inputs_ids="senXXXX,senXXXY,senXXXZ"&timeperiod_start="2020-10-03 15:31:55"&timeperiod_finish="2020-11-03 15:31:55"&aggregation_func="min,max,avg"`  
+  
+Receive min max and avg values for inputdata from several inputs for last 5 days.    
+  
+`GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_inputs/?inputs_ids="senXXXX,senXXXY,senXXXZ"&timeperiod_last="5_days"&aggregation_func="min,max,avg"`  
+  
+Receive inputdata from all inputs which related to asset from "2020-10-03 15:31:55" to "2020-11-03 15:31:55" and sort data by newest at first.  
+If you want to get inputdata only for several inputs from asset, you should add 'inputs_ids' parameter to request.  
+  
+`GET http://cloud.mydata.management/api/external/v1/get_inputdata_by_asset/?asset_id="67"&timeperiod_start="2020-10-03 15:31:55"&timeperiod_finish="2020-11-03 15:31:55"&order_by="timestamp"&sort_by="desc"`  
+  
+Receive inputdata from all inputs which related to asset for last 5 days and sort data by newest at first.  
+If you want to get inputdata only for several inputs from asset, you should add 'inputs_ids' parameter to request.    
+  
+`GET http://cloud.mydata.management/api/external/v1/get_latest_inputdata_by_asset/?asset_id="67"&timeperiod_last="5_days"&order_by="timestamp"&sort_by="desc"`  
+  
+Receive min max and avg values for inputdata from all inputs which related to asset from "2020-10-03 15:31:55" to "2020-11-03 15:31:55".    
+If you want to get inputdata only for several inputs from asset, you should add 'inputs_ids' parameter to request. 
+  
+`GET http://cloud.mydata.management/api/external/v1/get_statistics_inputdata_by_asset/?asset_id="senXXXX,senXXXY,senXXXZ"&timeperiod_start="2020-10-03 15:31:55"&timeperiod_finish="2020-11-03 15:31:55"&aggregation_func="min,max,avg"` 
+  
+Receive min max and avg values for inputdata from all inputs which related to asset for last 5 days.      
+If you want to get inputdata only for several inputs from asset, you should add 'inputs_ids' parameter to request.  
+    
+`GET http://cloud.mydata.management/api/external/v1/get_latest_statistics_inputdata_by_asset/?asset_id="67"&timeperiod_last="5_days"&aggregation_func="min,max,avg"` 
+  
 
 
